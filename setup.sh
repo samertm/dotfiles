@@ -8,6 +8,7 @@ for i in $(ls -a) ; do
     for j in $DONTCOPY ; do
         if [ $i = $j ] ; then
             CAN_COPY=0
+            break # efficiency is key!
         fi
     done
     if [ $CAN_COPY -ne 0 ] ; then
