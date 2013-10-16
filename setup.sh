@@ -1,6 +1,20 @@
 #!/bin/bash
 # Copies dotfiles into home dir
 
-cp -r .vim ~/.vim
-cp .vimrc ~/.vimrc
-cp .gitconfig ~/.gitconfig
+DONTCOPY="README setup.sh .git .gitconfig . .."
+
+for i in $(ls -a) ; do
+    CAN_COPY=1
+    for j in $DONTCOPY ; do
+        if [ $i = $j ] ; then
+            CAN_COPY=0
+        fi
+    done
+    if [ $CAN_COPY -ne 0 ] ; then
+        if [ -d $i ] ; then
+            cp -r $i ~/$i
+        else
+            cp $i ~/$i
+        fi
+    fi
+done
