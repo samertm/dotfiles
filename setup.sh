@@ -13,9 +13,9 @@ for i in $(ls -a) ; do
     done
     if [ $CAN_COPY -ne 0 ] ; then
         if [ -d $i ] ; then
-            cp -r $i ~/$i
+            cp -r $i ~/
         else
-            cp $i ~/$i
+            cp $i ~/
         fi
     fi
 done

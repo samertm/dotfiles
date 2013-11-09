@@ -1,7 +1,11 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+(setq inhibit-startup-screen t)
+
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+
+(set-face-attribute 'default nil :height 100)
 
 (require 'saveplace)
 (setq-default save-place t)
@@ -14,8 +18,9 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
-(show-paren-mode 1)
+(global-set-key (kbd "RET") 'newline-and-indent)
 (setq show-paren-delay 0)
+(show-paren-mode 1)
 (setq-default indend-tabs-mode nil)
 (setq apropos-do-all t
       auto-save-default nil
