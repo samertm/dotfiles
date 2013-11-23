@@ -5,7 +5,6 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
-(set-face-attribute 'default nil :height 100)
 
 (require 'saveplace)
 (setq-default save-place t)
