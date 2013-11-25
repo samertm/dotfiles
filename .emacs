@@ -5,7 +5,8 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
-(set-face-attribute 'default nil :height 100)
+(if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
+    (set-face-attribute 'default nil :height 100))
 
 (require 'saveplace)
 (setq-default save-place t)
@@ -40,7 +41,7 @@
 (global-set-key (kbd "C-<down>") 'shrink-window-if-larger-than-buffer)
 
 (require 'uniquify)
-(setq uniquify-buffer-name-style "forward")
+(setq uniquify-buffer-name-style 'forward)
 
 (setq scroll-margin 4)
 (setq scroll-conservatively 1)
@@ -84,6 +85,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes (quote ("54266114287ef8abeda6a3df605deffe777957ba994750da6b8595fe90e932f0" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
