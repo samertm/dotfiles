@@ -46,7 +46,7 @@
 
 (setq scroll-margin 4)
 (setq scroll-conservatively 1)
-
+(setq initial-scratch-message nil)
 
 (defun my-c-mode-hook ()
   (c-set-style "linux")
