@@ -1,6 +1,9 @@
 (if (>= emacs-major-version 24)
     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/"))
 
+(if (= emacs-major-version 23)
+    (global-set-key (kbd "C-c C-j") 'imenu))
+
 (setq inhibit-startup-screen t)
 
 (tool-bar-mode -1)
