@@ -8,6 +8,7 @@
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 100))
 
+(electric-indent-mode 1)
 (require 'saveplace)
 (setq-default save-place t)
 (setq ido-enable-flex-matching t)
