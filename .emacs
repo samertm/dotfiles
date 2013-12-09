@@ -23,7 +23,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-(setq-default indend-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq apropos-do-all t
       auto-save-default nil
       mouse-yank-at-point t
