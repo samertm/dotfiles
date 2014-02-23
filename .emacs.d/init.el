@@ -4,10 +4,14 @@
 (if (= emacs-major-version 23)
     (global-set-key (kbd "C-c C-j") 'imenu))
 
-(setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t
+      initial-buffer-choice "~/org/todos/2014/feb/week2.org")
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+(add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
 
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 100))
@@ -19,15 +23,26 @@
 (ido-mode 1)
 (column-number-mode t)
 (setq ido-create-new-buffer 'always)
+(global-set-key (kbd "C-x C-d") 'ido-dired)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
-(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "<f6>") 'shell-command)
+(global-set-key (kbd "C-c r") 'replace-regexp)
+(global-set-key (kbd "C-c q r") 'query-replace-regexp)
+
+(setq-default major-mode 'text-mode)
+
+(setq sentence-end-double-space nil)
+
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-(setq-default indend-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq apropos-do-all t
       auto-save-default nil
       mouse-yank-at-point t
@@ -35,11 +50,16 @@
       backup-directory-alist `(("." . ,(concat user-emacs-directory
 					       "backups"))))
 
-; For moving windows
-(global-set-key (kbd "M-<right>") 'windmove-right)
-(global-set-key (kbd "M-<left>") 'windmove-left)
-(global-set-key (kbd "M-<up>") 'windmove-up)
-(global-set-key (kbd "M-<down>") 'windmove-down)
+;; Org-mode stuff
+(setq org-log-done 'time)
+(setq org-directory "~/org/")
+
+
+;; For moving windows
+(global-set-key (kbd "S-<right>") 'windmove-right)
+(global-set-key (kbd "S-<left>") 'windmove-left)
+(global-set-key (kbd "S-<up>") 'windmove-up)
+(global-set-key (kbd "S-<down>") 'windmove-down)
 (global-set-key (kbd "C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "C-<up>") 'enlarge-window)
@@ -50,23 +70,37 @@
 
 (setq scroll-margin 4)
 (setq scroll-conservatively 1)
-(setq initial-scratch-message nil)
+
+;; custom hooks
+(defun my-prog-mode-hook ()
+  (setq-default indent-tabs-mode nil)
+  (local-set-key (kbd "C-a") 'back-to-indentation)
+  (local-set-key (kbd "M-m") 'move-beginning-of-line)
+  (electric-indent-mode 1))
 
 (defun my-c-mode-hook ()
   (c-set-style "linux")
-  (setq-default c-basic-offset 2
-		indent-tabs-mode nil)
-  (local-set-key (kbd "RET") 'newline-and-indent))
+  (setq-default c-basic-offset 2))
 
 (defun my-c++-mode-hook ()
   (c-set-style "linux")
-  (setq-default c-basic-offset 4)
-  (local-set-key (kbd "RET") 'newline-and-indent))
+  (setq c-basic-offset 4))
 
 (defun my-java-mode-hook ()
   (c-set-style "java")
-  (setq-default c-basic-offset 4)
-  (local-set-key (kbd "RET") 'newline-and-indent))
+  (setq-default c-basic-offset 4))
+
+(defun my-org-mode-hook ()
+  (electric-indent-mode 0))
+
+(add-hook 'prog-mode-hook 'my-prog-mode-hook)
+(add-hook 'c-mode-hook 'my-c-mode-hook)
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'java-mode-hook 'my-java-mode-hook)
+(add-hook 'org-mode-hook 'my-org-mode-hook)
+
+(add-hook 'text-mode-hook 'visual-line-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 
 (defun kill-control-block ()
   (interactive)
@@ -79,19 +113,17 @@
     (indent-region beg (point))
     (goto-char beg)))
 
+(defun console-log-debug ()
+  (interactive)) ;do this when I'm less tired @_@
 
-(add-hook 'c-mode-hook 'my-c-mode-hook)
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
-(add-hook 'java-mode-hook 'my-java-mode-hook)
-
+;; idea: function to separate unfinished from finished todos
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (zenburn)))
- '(custom-safe-themes (quote ("54266114287ef8abeda6a3df605deffe777957ba994750da6b8595fe90e932f0" default))))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
