@@ -4,8 +4,11 @@
 (if (= emacs-major-version 23)
     (global-set-key (kbd "C-c C-j") 'imenu))
 
+(if (not (file-exists-p "~/org/"))
+    (make-directory "~/org"))
+
 (setq inhibit-startup-screen t
-      initial-buffer-choice "~/org/todos/2014/feb/week2.org")
+      initial-buffer-choice "~/org/notes.org")
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -75,8 +78,7 @@
 (defun my-prog-mode-hook ()
   (setq-default indent-tabs-mode nil)
   (local-set-key (kbd "C-a") 'back-to-indentation)
-  (local-set-key (kbd "M-m") 'move-beginning-of-line)
-  (electric-indent-mode 1))
+  (local-set-key (kbd "M-m") 'move-beginning-of-line))
 
 (defun my-c-mode-hook ()
   (c-set-style "linux")
@@ -90,8 +92,8 @@
   (c-set-style "java")
   (setq-default c-basic-offset 4))
 
-(defun my-org-mode-hook ()
-  (electric-indent-mode 0))
+(defun my-org-mode-hook ())
+
 
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
 (add-hook 'c-mode-hook 'my-c-mode-hook)
