@@ -111,7 +111,7 @@
 ;; set keys
 (global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
 (global-set-key (kbd "C-c M-m") 'mark-whole-line)
-(global-set-key (kbd "C-O") 'vim-command-s-o)
+(global-set-key (kbd "C-S-o") 'vim-command-s-o)
 (global-set-key (kbd "C-o") 'vim-command-o)
 
 (global-set-key (kbd "C-x C-d") 'ido-dired)
