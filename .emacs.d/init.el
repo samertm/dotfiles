@@ -95,10 +95,22 @@
   (move-end-of-line nil)
   (setq deactivate-mark nil))
 
+(defun vim-command-s-o ()
+  (interactive)
+  (move-beginning-of-line nil)
+  (newline)
+  (previous-line nil))
 
+(defun vim-command-o ()
+  (interactive)
+  (move-end-of-line nil)
+  (newline))
+  
 ;; set keys
 (global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
 (global-set-key (kbd "C-c M-m") 'mark-whole-line)
+(global-set-key (kbd "C-O") 'vim-command-s-o)
+(global-set-key (kbd "C-o") 'vim-command-o)
 
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 
