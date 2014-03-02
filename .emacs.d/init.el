@@ -41,7 +41,12 @@
 (global-set-key (kbd "<f6>") 'shell-command)
 (global-set-key (kbd "C-c r") 'replace-regexp)
 (global-set-key (kbd "C-c q r") 'query-replace-regexp)
-(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "M-m") 'move-beginning-of-line)
+(if (< emacs-major-version 24)
+    (global-set-key (kbd "RET") 'newline-and-indent))
+(if (>= emacs-major-version 24)
+    (electric-indent-mode 1))
 
 ;; custom functions
 
@@ -126,7 +131,9 @@
   (c-set-style "java")
   (setq-default c-basic-offset 4))
 
-(defun my-org-mode-hook ())
+(defun my-org-mode-hook ()
+  (if (>= emacs-major-version 24)
+      (electric-indent-mode 0)))
 
 
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
@@ -136,7 +143,6 @@
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
-(add-hook 'text-mode-hook 'flyspell-mode)
 
 
 (global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
