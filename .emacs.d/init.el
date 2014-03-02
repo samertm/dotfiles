@@ -1,3 +1,5 @@
+;; general config
+
 (if (>= emacs-major-version 24)
     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/"))
 
@@ -19,6 +21,7 @@
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 100))
 
+(defalias 'yes-or-no-p 'y-or-n-p)
 (require 'saveplace)
 (setq-default save-place t)
 (setq ido-enable-flex-matching t)
@@ -38,6 +41,37 @@
 (global-set-key (kbd "<f6>") 'shell-command)
 (global-set-key (kbd "C-c r") 'replace-regexp)
 (global-set-key (kbd "C-c q r") 'query-replace-regexp)
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; custom functions
+
+(defun kill-control-block ()
+  (interactive)
+  (search-backward-regexp "\\(if\\|while\\|for\\|else\\|do\\)")
+  (let ((beg (point)))
+    (search-forward-regexp "{")
+    (delete-region beg (point))
+    (search-forward-regexp "}")
+    (delete-char -1)
+    (indent-region beg (point))
+    (goto-char beg)))
+
+(defun console-log-debug ()
+  (interactive)) ;do this when I'm less tired @_@
+
+(defun mark-whole-line ()
+  (interactive)
+  (move-beginning-of-line nil)
+  (set-mark-command nil)
+  (move-end-of-line nil)
+  (setq deactivate-mark nil))
+
+(defun mark-line-to-indentation ()
+  (interactive)
+  (back-to-indentation)
+  (set-mark-command nil)
+  (move-end-of-line nil)
+  (setq deactivate-mark nil))
 
 (setq-default major-mode 'text-mode)
 
@@ -104,19 +138,9 @@
 (add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 
-(defun kill-control-block ()
-  (interactive)
-  (search-backward-regexp "\\(if\\|while\\|for\\|else\\|do\\)")
-  (let ((beg (point)))
-    (search-forward-regexp "{")
-    (delete-region beg (point))
-    (search-forward-regexp "}")
-    (delete-char -1)
-    (indent-region beg (point))
-    (goto-char beg)))
 
-(defun console-log-debug ()
-  (interactive)) ;do this when I'm less tired @_@
+(global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
+(global-set-key (kbd "C-c M-m") 'mark-whole-line)
 
 ;; idea: function to separate unfinished from finished todos
 
