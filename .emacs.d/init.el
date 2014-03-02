@@ -99,12 +99,14 @@
   (interactive)
   (move-beginning-of-line nil)
   (newline)
-  (previous-line nil))
+  (previous-line nil)
+  (indent-according-to-mode))
 
 (defun vim-command-o ()
   (interactive)
   (move-end-of-line nil)
-  (newline))
+  (newline)
+  (indent-according-to-mode))
   
 ;; set keys
 (global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
