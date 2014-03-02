@@ -3,50 +3,67 @@
 (if (>= emacs-major-version 24)
     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/"))
 
-(if (= emacs-major-version 23)
-    (global-set-key (kbd "C-c C-j") 'imenu))
-
 (if (not (file-exists-p "~/org/"))
     (make-directory "~/org"))
 
 (setq inhibit-startup-screen t
       initial-buffer-choice "~/org/notes.org")
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
-(add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
-
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 100))
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+;; major modes
+(add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
+(setq-default indent-tabs-mode nil
+              major-mode 'text-mode)
+
+;; gui modes
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(column-number-mode t)
+
+;; save-place
 (require 'saveplace)
 (setq-default save-place t)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
+
+;; ido-mode
+(setq ido-enable-flex-matching t
+      ido-everywhere t
+      ido-create-new-buffer 'always)
 (ido-mode 1)
-(column-number-mode t)
-(setq ido-create-new-buffer 'always)
-(global-set-key (kbd "C-x C-d") 'ido-dired)
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-(global-set-key (kbd "<f5>") 'compile)
-(global-set-key (kbd "<f6>") 'shell-command)
-(global-set-key (kbd "C-c r") 'replace-regexp)
-(global-set-key (kbd "C-c q r") 'query-replace-regexp)
-(global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "M-m") 'move-beginning-of-line)
-(if (< emacs-major-version 24)
-    (global-set-key (kbd "RET") 'newline-and-indent))
+
+;; org-mode
+(setq org-log-done 'time)
+(setq org-directory "~/org/")
+
+;; show-paren-mode
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
+;; uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+;; electric-indent-mode
 (if (>= emacs-major-version 24)
     (electric-indent-mode 1))
+
+;; misc config
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq apropos-do-all t
+      sentence-end-double-space nil
+      ;; scroll
+      scroll-margin 4
+      scroll-conservatively 1
+
+      mouse-yank-at-point t
+      ;; saving
+      auto-save-default nil
+      save-place-file (concat user-emacs-directory "places")
+      backup-directory-alist `(("." . ,(concat user-emacs-directory
+					       "backups"))))
+
 
 ;; custom functions
 
@@ -78,26 +95,36 @@
   (move-end-of-line nil)
   (setq deactivate-mark nil))
 
-(setq-default major-mode 'text-mode)
 
-(setq sentence-end-double-space nil)
+;; set keys
+(global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
+(global-set-key (kbd "C-c M-m") 'mark-whole-line)
 
-(setq show-paren-delay 0)
-(show-paren-mode 1)
-(setq-default indent-tabs-mode nil)
-(setq apropos-do-all t
-      auto-save-default nil
-      mouse-yank-at-point t
-      save-place-file (concat user-emacs-directory "places")
-      backup-directory-alist `(("." . ,(concat user-emacs-directory
-					       "backups"))))
+(global-set-key (kbd "C-x C-d") 'ido-dired)
 
-;; Org-mode stuff
-(setq org-log-done 'time)
-(setq org-directory "~/org/")
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; For moving windows
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+
+(global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "<f6>") 'shell-command)
+
+(global-set-key (kbd "C-c r") 'replace-regexp)
+(global-set-key (kbd "C-c q r") 'query-replace-regexp)
+
+(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "M-m") 'move-beginning-of-line)
+
+(global-set-key (kbd "C-c C-j") 'imenu)
+
+(if (< emacs-major-version 24)
+    (global-set-key (kbd "RET") 'newline-and-indent)) ;; in place of electric-indent
+
+;; windmove keys
 (global-set-key (kbd "S-<right>") 'windmove-right)
 (global-set-key (kbd "S-<left>") 'windmove-left)
 (global-set-key (kbd "S-<up>") 'windmove-up)
@@ -107,11 +134,6 @@
 (global-set-key (kbd "C-<up>") 'enlarge-window)
 (global-set-key (kbd "C-<down>") 'shrink-window-if-larger-than-buffer)
 
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-
-(setq scroll-margin 4)
-(setq scroll-conservatively 1)
 
 ;; custom hooks
 (defun my-prog-mode-hook ()
@@ -144,9 +166,6 @@
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
-
-(global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
-(global-set-key (kbd "C-c M-m") 'mark-whole-line)
 
 ;; idea: function to separate unfinished from finished todos
 
