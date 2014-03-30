@@ -12,10 +12,25 @@
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 100))
 
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(require 'sourcegraph)
+
+
+(require 'package)
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 ;; major modes
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
+
+(setq load-path (cons "~/go/" load-path))
+(require 'go-mode-load)
+
 
 ;; gui modes
 (tool-bar-mode -1)
@@ -171,12 +186,16 @@
   (if (>= emacs-major-version 24)
       (electric-indent-mode 0)))
 
+(defun my-python-mode-hook ()
+  (local-set-key (kbd "<RET>") 'newline-and-indent)
+  (local-set-key (kbd "C-j") 'newline))
 
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'java-mode-hook 'my-java-mode-hook)
 (add-hook 'org-mode-hook 'my-org-mode-hook)
+(add-hook 'python-mode-hook 'my-python-mode-hook)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
