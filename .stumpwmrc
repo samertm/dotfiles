@@ -7,6 +7,9 @@
 (define-key *root-map* (kbd "C-c")
   "exec urxvtcd +sb -fn \"xft:Ubuntu Mono\"")
 (define-key *root-map* (kbd "O") "fother")
+(define-key *root-map* (kbd "C-w") "exec conkeror")
+(define-key *root-map* (kbd "e") "exec emacsclient -c -a ''")
+(define-key *root-map* (kbd "C-e") "exec emacsclient -c -a ''")
 
 (define-key *top-map* (kbd "s-=") "exec amixer -c 0 -q set Master 2dB+ unmute")
 (define-key *top-map* (kbd "s--") "exec amixer -c 0 -q set Master 2dB- unmute")
