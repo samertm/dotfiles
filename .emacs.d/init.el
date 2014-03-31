@@ -96,38 +96,49 @@
 (defun console-log-debug ()
   (interactive)) ;do this when I'm less tired @_@
 
-(defun mark-whole-line ()
+(defun samer-mark-whole-line ()
   (interactive)
   (move-beginning-of-line nil)
   (set-mark-command nil)
   (move-end-of-line nil)
   (setq deactivate-mark nil))
 
-(defun mark-line-to-indentation ()
+(defun samer-mark-line-to-indentation ()
   (interactive)
   (back-to-indentation)
   (set-mark-command nil)
   (move-end-of-line nil)
   (setq deactivate-mark nil))
 
-(defun vim-command-s-o ()
+(defun samer-vim-command-s-o ()
   (interactive)
   (move-beginning-of-line nil)
   (newline)
   (previous-line nil)
   (indent-according-to-mode))
 
-(defun vim-command-o ()
+(defun samer-vim-command-o ()
   (interactive)
   (move-end-of-line nil)
   (newline)
   (indent-according-to-mode))
+
+(defun samer-find-file-as-root ()
+  "Like `ido-find-file, but automatically edit the file with
+root-privileges (using tramp/sudo), if the file is not writable by
+user."
+  (interactive)
+  (let ((file (ido-read-file-name "Edit as root: ")))
+    (unless (file-writable-p file)
+      (setq file (concat "/sudo::" file)))
+    (find-file file)))
   
 ;; set keys
-(global-set-key (kbd "C-c C-a") 'mark-line-to-indentation)
-(global-set-key (kbd "C-c M-m") 'mark-whole-line)
-(global-set-key (kbd "C-M-o") 'vim-command-s-o)
-(global-set-key (kbd "C-o") 'vim-command-o)
+(global-set-key (kbd "C-c C-a") 'samer-mark-line-to-indentation)
+(global-set-key (kbd "C-c M-m") 'samer-mark-whole-line)
+(global-set-key (kbd "C-M-o") 'samer-vim-command-s-o)
+(global-set-key (kbd "C-o") 'samer-vim-command-o)
+(global-set-key (kbd "C-x F") 'samer-find-file-as-root)
 
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 
