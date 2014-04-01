@@ -10,7 +10,7 @@
       initial-buffer-choice "~/org/notes.org")
 
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
-    (set-face-attribute 'default nil :height 100))
+    (set-face-attribute 'default nil :height 130))
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
