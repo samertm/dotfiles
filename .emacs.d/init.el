@@ -14,7 +14,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-(require 'sourcegraph)
+(require 'sourcegraph nil 'noerror)
 
 
 (require 'package)
@@ -29,7 +29,7 @@
               major-mode 'text-mode)
 
 (setq load-path (cons "~/go/" load-path))
-(require 'go-mode-load)
+(require 'go-mode-load nil 'noerror)
 
 
 ;; gui modes
