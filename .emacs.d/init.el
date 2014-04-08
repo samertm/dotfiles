@@ -16,12 +16,10 @@
 
 (require 'sourcegraph nil 'noerror)
 
-
-(require 'package)
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t))
 
 ;; major modes
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
