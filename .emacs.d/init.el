@@ -31,9 +31,11 @@
 
 
 ;; gui modes
-(tool-bar-mode -1)
+(if window-system
+    (prog
+     (tool-bar-mode -1)
+     (scroll-bar-mode -1)))
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
 (column-number-mode t)
 
 ;; save-place
