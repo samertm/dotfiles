@@ -3,11 +3,7 @@
 (if (>= emacs-major-version 24)
     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/"))
 
-(if (not (file-exists-p "~/org/"))
-    (make-directory "~/org"))
-
-(setq inhibit-startup-screen t
-      initial-buffer-choice "~/org/notes.org")
+(setq inhibit-startup-screen t)
 
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 130))
@@ -16,10 +12,12 @@
 
 (require 'sourcegraph nil 'noerror)
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t))
+
+(require 'package)
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ;; major modes
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
@@ -31,11 +29,9 @@
 
 
 ;; gui modes
-(if window-system
-    (progn
-     (tool-bar-mode -1)
-     (scroll-bar-mode -1)))
+(tool-bar-mode -1)
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
 (column-number-mode t)
 
 ;; save-place
@@ -201,12 +197,21 @@ user."
   (local-set-key (kbd "<RET>") 'newline-and-indent)
   (local-set-key (kbd "C-j") 'newline))
 
+(defun my-scheme-mode-hook ()
+  (enable-paredit-mode))
+
+(defun my-emacs-lisp-mode-hook ()
+  (enable-paredit-mode))
+
+
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'java-mode-hook 'my-java-mode-hook)
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
+(add-hook 'scheme-mode-hook 'my-scheme-mode-hook)
+(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
