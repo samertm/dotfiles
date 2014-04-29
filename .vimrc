@@ -1,10 +1,5 @@
-execute pathogen#infect()
-
 set nocompatible
 
-set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
 filetype plugin on
 syntax on
 set title
