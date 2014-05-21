@@ -27,10 +27,12 @@
   (local-set-key (kbd "C-j") 'newline))
 
 (defun my-scheme-mode-hook ()
-  (enable-paredit-mode))
+  ;(enable-paredit-mode))
+  )
 
 (defun my-emacs-lisp-mode-hook ()
-  (enable-paredit-mode))
+  ;(enable-paredit-mode))
+  )
 
 
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
