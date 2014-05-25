@@ -27,6 +27,9 @@
 
 (global-set-key (kbd "C-c C-j") 'imenu)
 
+;; make C-x b and C-x C-b the same
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+
 (if (< emacs-major-version 24)
     (global-set-key (kbd "RET") 'newline-and-indent)) ;; in place of electric-indent
 
