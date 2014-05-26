@@ -30,6 +30,10 @@
 ;; make C-x b and C-x C-b the same
 (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
 
+;; exchange zap-to-char for zap-up-to-char
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+(global-set-key (kbd "C-M-z") 'zap-to-char)
+
 (if (< emacs-major-version 24)
     (global-set-key (kbd "RET") 'newline-and-indent)) ;; in place of electric-indent
 
