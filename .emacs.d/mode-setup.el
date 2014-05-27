@@ -1,26 +1,10 @@
-(require 'package)
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
+;; set up modes
 ;; major modes
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . javascript-mode))
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
-(setq load-path (cons "~/go/" load-path))
-(require 'go-mode-load nil 'noerror)
-
-
-;; gui modes
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(column-number-mode t)
-
 ;; save-place
-(require 'saveplace)
 (setq-default save-place t)
 
 ;; ido-mode
@@ -38,12 +22,14 @@
 (show-paren-mode 1)
 
 ;; uniquify
-(require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
 ;; electric-indent-mode
 (if (>= emacs-major-version 24)
     (electric-indent-mode 1))
+
+;; ctags
+(setq tags-revert-without-query t)
 
 ;; misc config
 (defalias 'yes-or-no-p 'y-or-n-p)

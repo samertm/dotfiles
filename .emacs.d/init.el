@@ -1,19 +1,27 @@
 ;; general config
 
-(if (>= emacs-major-version 24)
-    (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/"))
-
+;; suppress gui & startup
 (setq inhibit-startup-screen t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(column-number-mode t)
 
+;; for chromebook
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 130))
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-(require 'sourcegraph nil 'noerror)
+(load "~/.emacs.d/package-setup" nil t)
 
-(load "~/.emacs.d/mode-setup" nil t)
+(require 'sourcegraph nil 'noerror)
+(require 'uniquify)
+(require 'saveplace)
+(require 'ctags)
+
 (load "~/.emacs.d/custom-functions" nil t)
+(load "~/.emacs.d/mode-setup" nil t)
 (load "~/.emacs.d/set-keys" nil t)
 (load "~/.emacs.d/hooks" nil t)
 
