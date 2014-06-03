@@ -6,7 +6,7 @@
 (global-set-key (kbd "C-x F") 'samer-find-file-as-root)
 (global-set-key (kbd "C-x O") 'samer-previous-window)
 (global-set-key (kbd "C-k") 'samer-kill-this-buffer)
-(global-set-key (kbd "M-^") 'samer-top-join-line)
+(global-set-key (kbd "C-^") 'samer-top-join-line)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 
