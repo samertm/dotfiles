@@ -45,3 +45,4 @@
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory
 					       "backups"))))
+(if-gteq-24-4 (superword-mode))

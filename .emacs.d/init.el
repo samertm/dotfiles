@@ -11,12 +11,24 @@
 (if (equal system-configuration "armv7l-unknown-linux-gnueabihf")
     (set-face-attribute 'default nil :height 130))
 
+
+;; for emacs 24.4 integration
+(defmacro if-gteq-24-4 (then-stmt &optional else-stmt)
+    `(if (or
+          (and (= 24 emacs-major-version) (>= emacs-minor-version 4))
+          (> 24 emacs-major-version))
+         ,then-stmt
+       ,else-stmt))
+
+(if-gteq-24-4 (setq initial-buffer-choice 'remember-notes))
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (load "~/.emacs.d/package-setup" nil t)
 
+(load "ProofGeneral-4.2/generic/proof-site" 'noerror)
 (require 'sourcegraph nil 'noerror)
-(require 'uniquify)
+(if-gteq-24-4 (require 'uniquify))
 (require 'saveplace)
 (require 'ctags)
 
