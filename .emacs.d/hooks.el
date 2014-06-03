@@ -19,8 +19,7 @@
   (setq-default c-basic-offset 4))
 
 (defun my-org-mode-hook ()
-  (if (>= emacs-major-version 24)
-      (electric-indent-mode 0)))
+  (if-gteq-24-4 (electric-indent-local-mode -1)))
 
 (defun my-python-mode-hook ()
   (local-set-key (kbd "<RET>") 'newline-and-indent)
