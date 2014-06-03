@@ -13,6 +13,8 @@
 (global-set-key (kbd "C-x m") 'eshell)
 (global-set-key (kbd "C-x M") 'samer-new-eshell)
 
+(global-set-key (kbd "C-x g") 'magit-status)
+
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
