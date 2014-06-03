@@ -1,4 +1,3 @@
-  
 ;; set keys
 (global-set-key (kbd "C-c C-a") 'samer-mark-line-to-indentation)
 (global-set-key (kbd "C-c M-m") 'samer-mark-whole-line)
@@ -6,6 +5,13 @@
 (global-set-key (kbd "C-o") 'samer-vim-command-o)
 (global-set-key (kbd "C-x F") 'samer-find-file-as-root)
 (global-set-key (kbd "C-x O") 'samer-previous-window)
+(global-set-key (kbd "C-k") 'samer-kill-this-buffer)
+(global-set-key (kbd "M-^") 'samer-top-join-line)
+
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+(global-set-key (kbd "C-x m") 'eshell)
+(global-set-key (kbd "C-x M") 'samer-new-eshell)
 
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 

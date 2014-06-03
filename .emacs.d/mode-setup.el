@@ -24,9 +24,9 @@
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
 
-;; electric-indent-mode
-(if (>= emacs-major-version 24)
-    (electric-indent-mode 1))
+;; set electric-indent-mode in <= emacs 24.3
+(if-gteq-24-4 nil (if (>= emacs-major-version 24)
+                      (electric-indent-mode 1)))
 
 ;; ctags
 (setq tags-revert-without-query t)

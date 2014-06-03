@@ -61,3 +61,16 @@ user."
 (defun samer-previous-window ()
   (interactive)
   (other-window -1))
+
+;; from http://www.masteringemacs.org/articles/2014/02/28/my-emacs-keybindings/
+(defun samer-kill-this-buffer ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+(defun samer-new-eshell ()
+  (interactive)
+  (eshell t))
+
+(defun samer-top-join-line ()
+  (interactive)
+  (delete-indentation 1))
