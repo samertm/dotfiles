@@ -5,6 +5,7 @@
 (global-set-key (kbd "C-M-o") 'samer-vim-command-s-o)
 (global-set-key (kbd "C-o") 'samer-vim-command-o)
 (global-set-key (kbd "C-x F") 'samer-find-file-as-root)
+(global-set-key (kbd "C-x O") 'samer-previous-window)
 
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 

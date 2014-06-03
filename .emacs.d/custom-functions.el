@@ -58,3 +58,6 @@ user."
       (setq file (concat "/sudo::" file)))
     (find-file file)))
 
+(defun samer-previous-window ()
+  (interactive)
+  (other-window -1))
