@@ -49,7 +49,8 @@
   (indent-according-to-mode))
 
 (defun samer-find-file-as-root ()
-  "Like `ido-find-file, but automatically edit the file with
+  "Get file with root privileges.
+Like `ido-find-file, but automatically edit the file with
 root-privileges (using tramp/sudo), if the file is not writable by
 user."
   (interactive)
@@ -74,3 +75,15 @@ user."
 (defun samer-top-join-line ()
   (interactive)
   (delete-indentation 1))
+
+(defun samer-generate-blog ()
+  "Generate my blog."
+  (interactive)
+  (setq samer-my-shell (start-process "to-blog" "*to blog*" "bash"))
+  (process-send-string samer-my-shell "ssh samertm\n")
+  (process-send-string samer-my-shell ". virtualenvs/pelican/bin/activate\n")
+  (process-send-string samer-my-shell "cd /home/samer/pelican\n")
+  (process-send-string samer-my-shell "make html\n")
+  (process-send-string samer-my-shell "exit\n")
+  (process-send-string samer-my-shell "exit\n")
+  (display-buffer "*to blog*" '(display-buffer-pop-up-window . nil)))

@@ -19,7 +19,11 @@
                  clojure-mode
                  ctags
                  go-mode
+                 go-eldoc
+                 smex
                  magit
+                 ace-jump-mode
+                 deft
                  ))
 (package-initialize t) ; read packages without loading
 (samer-get-packages packages)

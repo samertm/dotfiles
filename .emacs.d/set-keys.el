@@ -5,8 +5,18 @@
 (global-set-key (kbd "C-o") 'samer-vim-command-o)
 (global-set-key (kbd "C-x F") 'samer-find-file-as-root)
 (global-set-key (kbd "C-x O") 'samer-previous-window)
-(global-set-key (kbd "C-k") 'samer-kill-this-buffer)
+(global-set-key (kbd "C-x k") 'samer-kill-this-buffer)
 (global-set-key (kbd "C-^") 'samer-top-join-line)
+(global-set-key (kbd "C-c b") 'samer-generate-blog)
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+(global-set-key (kbd "<f8>") 'deft)
+
+(global-set-key (kbd "C-c C-SPC") 'ace-jump-mode)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 

@@ -4,7 +4,8 @@
 (defun my-prog-mode-hook ()
   (setq-default indent-tabs-mode nil)
   (local-set-key (kbd "C-a") 'back-to-indentation)
-  (local-set-key (kbd "M-m") 'move-beginning-of-line))
+  (local-set-key (kbd "M-m") 'move-beginning-of-line)
+  (if-gteq-24-4 (superword-mode 1)))
 
 (defun my-c-mode-hook ()
   (c-set-style "linux")
@@ -33,6 +34,9 @@
   ;(enable-paredit-mode))
   )
 
+(defun my-go-mode-hook ()
+  (local-set-key (kbd "C-c m") 'gofmt))
+
 
 (add-hook 'prog-mode-hook 'my-prog-mode-hook)
 (add-hook 'c-mode-hook 'my-c-mode-hook)
@@ -42,5 +46,7 @@
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-hook 'scheme-mode-hook 'my-scheme-mode-hook)
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (add-hook 'text-mode-hook 'visual-line-mode)

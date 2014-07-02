@@ -4,12 +4,16 @@
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
+;; smex
+(smex-initialize)
+
 ;; save-place
 (setq-default save-place t)
 
 ;; ido-mode
 (setq ido-enable-flex-matching t
       ido-everywhere t
+      ido-auto-merge-work-directories-length -1
       ido-create-new-buffer 'always)
 (ido-mode 1)
 
@@ -20,6 +24,11 @@
 ;; show-paren-mode
 (setq show-paren-delay 0)
 (show-paren-mode 1)
+
+;; deft
+(setq deft-extension "org")
+(setq deft-text-mode 'org-mode)
+(setq deft-directory "~/org")
 
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
