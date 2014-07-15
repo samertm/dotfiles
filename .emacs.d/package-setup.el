@@ -19,6 +19,7 @@
                  clojure-mode
                  ctags
                  go-mode
+                 popwin
                  go-eldoc
                  smex
                  magit

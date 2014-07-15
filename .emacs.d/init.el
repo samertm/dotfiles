@@ -19,20 +19,18 @@
           (> 24 emacs-major-version))
          ,then-stmt
        ,else-stmt))
+(defmacro if-lt-24-4 (then-stmt &optional else-stmt)
+  `(if (or
+        (and (= 24 emacs-major-version) (< emacs-minor-version 4))
+        (< 24 emacs-major-version))
+       ,then-stmt
+     ,else-stmt))
 
 (if-gteq-24-4 (setq initial-buffer-choice 'remember-notes))
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (load "~/.emacs.d/package-setup" nil t)
-
-(load "ProofGeneral-4.2/generic/proof-site" 'noerror)
-(require 'sourcegraph nil 'noerror)
-(if-gteq-24-4 (require 'uniquify))
-(require 'saveplace)
-(require 'ctags)
-(require 'go-eldoc)
-
 (load "~/.emacs.d/custom-functions" nil t)
 (load "~/.emacs.d/mode-setup" nil t)
 (load "~/.emacs.d/set-keys" nil t)

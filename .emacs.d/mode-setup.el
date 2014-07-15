@@ -4,10 +4,31 @@
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
+;; proofgeneral
+(load "ProofGeneral-4.2/generic/proof-site" 'noerror)
+
+;; sourcegraph-mode
+(require 'sourcegraph nil 'noerror)
+
+
+;; popwin-mode
+(require 'popwin)
+(popwin-mode 1)
+
+;; go-mode
+(setq gofmt-command "goimports")
+
+;; go-eldoc
+(require 'go-eldoc)
+
+;; company-mode
+(setq company-idle-delay nil)
+
 ;; smex
 (smex-initialize)
 
 ;; save-place
+(require 'saveplace)
 (setq-default save-place t)
 
 ;; ido-mode
@@ -31,6 +52,7 @@
 (setq deft-directory "~/org")
 
 ;; uniquify
+(if-lt-24-4 (require 'uniquify))
 (setq uniquify-buffer-name-style 'forward)
 
 ;; set electric-indent-mode in <= emacs 24.3
@@ -38,6 +60,7 @@
                       (electric-indent-mode 1)))
 
 ;; ctags
+(require 'ctags)
 (setq tags-revert-without-query t)
 
 ;; misc config
