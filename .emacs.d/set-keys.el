@@ -9,6 +9,11 @@
 (global-set-key (kbd "C-^") 'samer-top-join-line)
 (global-set-key (kbd "C-c b") 'samer-generate-blog)
 
+(global-set-key (kbd "C-c C-m") 'make-directory)
+
+(global-set-key (kbd "C-c M-n") 'company-complete)
+(global-set-key (kbd "C-c C-n") 'company-complete)
+
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
