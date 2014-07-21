@@ -9,6 +9,13 @@
 (global-set-key (kbd "C-^") 'samer-top-join-line)
 (global-set-key (kbd "C-c b") 'samer-generate-blog)
 
+(global-set-key (kbd "C-c C-s C-M-s") 'hs-show-all)
+(global-set-key (kbd "C-c C-s C-M-h") 'hs-hide-all)
+(global-set-key (kbd "C-c C-s C-c") 'hs-toggle-hiding)
+(global-set-key (kbd "C-c C-s C-h") 'hs-hide-block)
+(global-set-key (kbd "C-c C-s C-l") 'hs-hide-level)
+(global-set-key (kbd "C-c C-s C-s") 'hs-show-block)
+
 (global-set-key (kbd "C-c C-m") 'make-directory)
 
 (global-set-key (kbd "C-c M-n") 'company-complete)
@@ -25,6 +32,7 @@
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+(global-set-key (kbd "C-x C-m") 'eshell)
 (global-set-key (kbd "C-x m") 'eshell)
 (global-set-key (kbd "C-x M") 'samer-new-eshell)
 

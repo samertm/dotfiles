@@ -21,6 +21,8 @@
                  go-mode
                  popwin
                  go-eldoc
+                 company
+                 company-go
                  smex
                  magit
                  ace-jump-mode

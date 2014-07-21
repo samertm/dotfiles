@@ -37,6 +37,7 @@
 (defun my-go-mode-hook ()
   (local-set-key (kbd "C-c m") 'gofmt)
   (local-set-key (kbd "M-.") 'godef-jump)
+  (company-mode 1)
   (set (make-local-variable 'company-backends) '(company-go)))
 
 
