@@ -4,8 +4,8 @@
 (defun my-prog-mode-hook ()
   (setq-default indent-tabs-mode nil)
   (local-set-key (kbd "C-a") 'back-to-indentation)
-  (local-set-key (kbd "M-m") 'move-beginning-of-line)
-  (if-gteq-24-4 (superword-mode 1)))
+  (local-set-key (kbd "M-m") 'move-beginning-of-line))
+  
 
 (defun my-c-mode-hook ()
   (c-set-style "linux")
@@ -19,8 +19,7 @@
   (c-set-style "java")
   (setq-default c-basic-offset 4))
 
-(defun my-org-mode-hook ()
-  (if-gteq-24-4 (electric-indent-local-mode -1)))
+(defun my-org-mode-hook ())
 
 (defun my-python-mode-hook ()
   (local-set-key (kbd "<RET>") 'newline-and-indent)

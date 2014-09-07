@@ -9,6 +9,8 @@
 (global-set-key (kbd "C-^") 'samer-top-join-line)
 (global-set-key (kbd "C-c b") 'samer-generate-blog)
 
+(global-set-key (kbd "C-c C-r") 'recompile)
+
 (global-set-key (kbd "C-c C-s C-M-s") 'hs-show-all)
 (global-set-key (kbd "C-c C-s C-M-h") 'hs-hide-all)
 (global-set-key (kbd "C-c C-s C-c") 'hs-toggle-hiding)

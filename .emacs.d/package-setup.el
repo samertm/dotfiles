@@ -3,10 +3,14 @@
 
 ;; custom package-specific functions
 (defun samer-get-packages (packages-list)
-  (while (car packages-list)
-    (if (not (package-installed-p (car packages-list)))
-        (package-install (car packages-list)))
-    (setq packages-list (cdr packages-list))))
+  (let ((refreshed nil))
+    (while (car packages-list)
+      (if (not (package-installed-p (car packages-list)))
+          (if (not refreshed)
+              (progn (package-refresh-contents)
+                     (setq refreshed t))
+          (package-install (car packages-list)))
+      (setq packages-list (cdr packages-list))))))
 
 ;; set up package repos
 (when (< emacs-major-version 24)
@@ -16,7 +20,6 @@
 
 ;; install packages
 (setq packages '(
-                 clojure-mode
                  ctags
                  go-mode
                  popwin

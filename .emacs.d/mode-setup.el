@@ -52,12 +52,11 @@
 (setq deft-directory "~/org")
 
 ;; uniquify
-(if-lt-24-4 (require 'uniquify))
+;; (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
 ;; set electric-indent-mode in <= emacs 24.3
-(if-gteq-24-4 nil (if (>= emacs-major-version 24)
-                      (electric-indent-mode 1)))
+; (electric-indent-mode 1)
 
 ;; ctags
 (require 'ctags)
@@ -77,4 +76,4 @@
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory
 					       "backups"))))
-(if-gteq-24-4 (superword-mode))
+
