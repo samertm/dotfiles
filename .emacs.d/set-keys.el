@@ -9,6 +9,18 @@
 (global-set-key (kbd "C-^") 'samer-top-join-line)
 (global-set-key (kbd "C-c b") 'samer-generate-blog)
 
+(global-set-key (kbd "C-c u") 'samer-subword-mode-on)
+(global-set-key (kbd "C-c i") 'samer-superword-mode-on)
+
+;; so fat
+(global-set-key (kbd "C-c C-c C-o") 'other-frame)
+(global-set-key (kbd "C-c C-c o") 'other-frame)
+(global-set-key (kbd "C-c c C-o") 'other-frame)
+(global-set-key (kbd "C-c c o") 'other-frame)
+
+;; fat-finger
+(global-set-key (kbd "C-x C-r") 'eval-last-sexp)
+
 (global-set-key (kbd "C-c C-r") 'recompile)
 
 (global-set-key (kbd "C-c C-s C-M-s") 'hs-show-all)

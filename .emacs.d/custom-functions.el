@@ -87,3 +87,10 @@ user."
   (process-send-string samer-my-shell "exit\n")
   (process-send-string samer-my-shell "exit\n")
   (display-buffer "*to blog*" '(display-buffer-pop-up-window . nil)))
+
+(defun samer-subword-mode-on ()
+  (interactive)
+  (subword-mode 1))
+(defun samer-superword-mode-on ()
+  (interactive)
+  (superword-mode 1))

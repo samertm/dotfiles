@@ -23,6 +23,10 @@
                  ctags
                  go-mode
                  popwin
+                 projectile
+                 flx-ido
+                 guide-key
+                 ag
                  go-eldoc
                  company
                  company-go

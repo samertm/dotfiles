@@ -4,12 +4,26 @@
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
+;; projectile-mode
+(projectile-global-mode)
+
+;; turn off bell
+(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
+
 ;; proofgeneral
 (load "ProofGeneral-4.2/generic/proof-site" 'noerror)
 
 ;; sourcegraph-mode
 (require 'sourcegraph nil 'noerror)
 
+;; guide-key
+(setq guide-key/guide-key-sequence '("C-c p" "C-x r"))
+(guide-key-mode 1)
+(setq guide-key/recursive-key-sequence-flag t)
+
+;; ag
+(setq ag-highlight-search t)
 
 ;; popwin-mode
 (require 'popwin)
@@ -31,12 +45,17 @@
 (require 'saveplace)
 (setq-default save-place t)
 
-;; ido-mode
+;; ido-mode, flx-ido
+(require 'flx-ido)
 (setq ido-enable-flex-matching t
       ido-everywhere t
       ido-auto-merge-work-directories-length -1
       ido-create-new-buffer 'always)
 (ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil) 
 
 ;; org-mode
 (setq org-log-done 'time)
