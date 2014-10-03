@@ -1,5 +1,5 @@
 [user]
 	name = Samer Masterson
-	email = nosefrog@gmail.com
-[credential]
-	helper = cache --timeout=3600
+	email = samer@samertm.com
+[push]
+	default = simple
