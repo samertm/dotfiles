@@ -4,6 +4,9 @@
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
+;; scroll
+(setq scroll-preserve-screen-position t)
+
 ;; projectile-mode
 (projectile-global-mode)
 
@@ -31,6 +34,12 @@
 
 ;; go-mode
 (setq gofmt-command "goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
+(require 'go-flycheck)
+
+;; flycheck-mode
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; go-eldoc
 (require 'go-eldoc)
@@ -50,7 +59,9 @@
 (setq ido-enable-flex-matching t
       ido-everywhere t
       ido-auto-merge-work-directories-length -1
-      ido-create-new-buffer 'always)
+      ido-create-new-buffer 'always
+      ido-default-file-method 'selected-window
+      ido-default-buffer-method 'selected-window)
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)

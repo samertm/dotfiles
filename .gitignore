@@ -5,3 +5,7 @@
 .emacs.d/places
 .emacs.d/tramp
 .emacs~
+
+
+# srclib build cache
+.srclib-cache/

@@ -25,6 +25,7 @@
                  popwin
                  projectile
                  flx-ido
+                 flycheck
                  guide-key
                  ag
                  go-eldoc

@@ -3,3 +3,9 @@
 	email = samer@samertm.com
 [push]
 	default = simple
+[alias]
+        st = status
+        co = checkout
+        rb = rebase
+        changes=diff --name-status -r
+        diffstat=diff --stat -r
