@@ -36,7 +36,7 @@
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
-(require 'go-flycheck)
+;(require 'go-flycheck)
 
 ;; flycheck-mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
