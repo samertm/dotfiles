@@ -94,3 +94,10 @@ user."
 (defun samer-superword-mode-on ()
   (interactive)
   (superword-mode 1))
+
+;; useful keyboard macros
+(fset 'time-set
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217729 19 92 119 40 return 134217826 134217828 67108911 15 116 32 58 61 32 116 105 109 101 46 78 111 119 40 41 return 116 111 116 97 108 32 58 61 32 116 return 108 111 103 46 80 114 105 110 116 108 110 40 34 25 32 84 79 84 65 76 34 44 32 116 105 109 101 46 83 105 110 99 101 40 116 111 116 97 108 41 41 1 102 backspace 100 101 102 101 114 32 102 117 110 99 40 41 33554464 123 32 5 33554464 125 40 41 14 1] 0 "%d")) arg)))
+
+(fset 'time-statement
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 11 67108911 15 108 111 103 46 80 114 105 110 116 108 110 40 34 25 34 backspace 32 84 73 77 69 34 44 32 116 105 109 101 46 83 105 110 99 101 40 116 41 41 return 116 32 61 32 116 105 109 101 46 78 111 119 40 41 14 1] 0 "%d")) arg)))

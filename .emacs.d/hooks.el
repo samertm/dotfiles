@@ -1,8 +1,7 @@
-
-
 ;; custom hooks
 (defun my-prog-mode-hook ()
   (setq-default indent-tabs-mode nil)
+  ;(sourcegraph-mode 1)
   (local-set-key (kbd "C-a") 'back-to-indentation)
   (local-set-key (kbd "M-m") 'move-beginning-of-line))
   
@@ -52,3 +51,4 @@
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
+

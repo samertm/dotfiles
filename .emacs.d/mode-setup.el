@@ -4,21 +4,26 @@
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
+;; ag
+(setq ag-reuse-buffers t)
+(defun ag/dwim-at-point () "") ;; turn off this anti-feature.
+(setq ag-ignore-list '("Godeps" "assets" "node_modules" "bower_components"))
+
 ;; scroll
 (setq scroll-preserve-screen-position t)
 
 ;; projectile-mode
 (projectile-global-mode)
+(defun projectile-symbol-at-point () "") ;; turn off this anti-feature.
+(setq projectile-find-dir-includes-top-level t)
+(setq projectile-switch-project-action 'projectile-find-root-dir)
 
 ;; turn off bell
 (setq visible-bell nil)
 (setq ring-bell-function 'ignore)
 
-;; proofgeneral
-(load "ProofGeneral-4.2/generic/proof-site" 'noerror)
-
 ;; sourcegraph-mode
-(require 'sourcegraph nil 'noerror)
+;;(require 'sourcegraph nil 'noerror)
 
 ;; guide-key
 (setq guide-key/guide-key-sequence '("C-c p" "C-x r"))

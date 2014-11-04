@@ -13,7 +13,8 @@
 
 (setq initial-buffer-choice 'remember-notes)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(let ((default-directory "~/.emacs.d/lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 (load "~/.emacs.d/package-setup" nil t)
 (load "~/.emacs.d/custom-functions" nil t)

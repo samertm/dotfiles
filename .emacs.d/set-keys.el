@@ -20,6 +20,7 @@
 
 ;; fat-finger
 (global-set-key (kbd "C-x C-r") 'eval-last-sexp)
+(global-set-key (kbd "C-c C-e") 'eval-last-sexp)
 
 (global-set-key (kbd "C-c C-r") 'recompile)
 
