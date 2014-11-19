@@ -4,9 +4,62 @@
 (setq-default indent-tabs-mode nil
               major-mode 'text-mode)
 
+;; ag.el patch start
+(defun ag/dwim-at-point () "") ;; turn off this anti-feature.
+(defcustom ag-ignore-list nil
+  "A list of patterns to ignore when searching."
+  :type '(repeat (string))
+  :group 'ag)
+(defun ag/format-ignore (ignore)
+  "Prepend '--ignore' to every item in IGNORE."
+  (let ((result nil))
+    (while ignore
+      (setq result (append `("--ignore" ,(car ignore)) result))
+      (setq ignore (cdr ignore)))
+    result))
+(defun* ag/search (string directory
+                          &key (regexp nil) (file-regex nil) (file-type nil))
+  "Run ag searching for the STRING given in DIRECTORY.
+If REGEXP is non-nil, treat STRING as a regular expression."
+  (let ((default-directory (file-name-as-directory directory))
+        (arguments ag-arguments)
+        (shell-command-switch "-c"))
+    (unless regexp
+        (setq arguments (cons "--literal" arguments)))
+    (if ag-highlight-search
+        (setq arguments (append '("--color" "--color-match" "30;43") arguments))
+      (setq arguments (append '("--nocolor") arguments)))
+    (when (char-or-string-p file-regex)
+      (setq arguments (append `("--file-search-regex" ,file-regex) arguments)))
+    (when file-type
+      (setq arguments (cons file-type arguments)))
+    (when ag-ignore-list
+      (setq arguments (append (ag/format-ignore ag-ignore-list) arguments)))
+    (unless (file-exists-p default-directory)
+      (error "No such directory %s" default-directory))
+    (let ((command-string
+           (mapconcat 'shell-quote-argument
+                      (append (list ag-executable) arguments (list string "."))
+                      " ")))
+      ;; If we're called with a prefix, let the user modify the command before
+      ;; running it. Typically this means they want to pass additional arguments.
+      (when current-prefix-arg
+        ;; Make a space in the command-string for the user to enter more arguments.
+        (setq command-string (ag/replace-first command-string " -- " "  -- "))
+        ;; Prompt for the command.
+        (let ((adjusted-point (- (length command-string) (length string) 5)))
+          (setq command-string
+                (read-from-minibuffer "ag command: "
+                                      (cons command-string adjusted-point)))))
+      ;; Call ag.
+      (compilation-start
+       command-string
+       'ag-mode
+       `(lambda (mode-name) ,(ag/buffer-name string directory regexp))))))
+;; ag.el patch end
+
 ;; ag
 (setq ag-reuse-buffers t)
-(defun ag/dwim-at-point () "") ;; turn off this anti-feature.
 (setq ag-ignore-list '("Godeps" "assets" "node_modules" "bower_components"))
 
 ;; scroll
@@ -16,7 +69,7 @@
 (projectile-global-mode)
 (defun projectile-symbol-at-point () "") ;; turn off this anti-feature.
 (setq projectile-find-dir-includes-top-level t)
-(setq projectile-switch-project-action 'projectile-find-root-dir)
+(setq projectile-switch-project-action (lambda () (dired (projectile-project-root))))
 
 ;; turn off bell
 (setq visible-bell nil)
@@ -41,7 +94,6 @@
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
-;(require 'go-flycheck)
 
 ;; flycheck-mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
