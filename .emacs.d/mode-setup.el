@@ -17,8 +17,9 @@
       (setq result (append `("--ignore" ,(car ignore)) result))
       (setq ignore (cdr ignore)))
     result))
-(defun* ag/search (string directory
-                          &key (regexp nil) (file-regex nil) (file-type nil))
+
+(require 'cl)
+(defun* ag/search (string directory &key (regexp nil) (file-regex nil) (file-type nil))
   "Run ag searching for the STRING given in DIRECTORY.
 If REGEXP is non-nil, treat STRING as a regular expression."
   (let ((default-directory (file-name-as-directory directory))
@@ -54,7 +55,7 @@ If REGEXP is non-nil, treat STRING as a regular expression."
       ;; Call ag.
       (compilation-start
        command-string
-       'ag-mode
+       'grep-mode
        `(lambda (mode-name) ,(ag/buffer-name string directory regexp))))))
 ;; ag.el patch end
 
@@ -156,6 +157,8 @@ If REGEXP is non-nil, treat STRING as a regular expression."
       ;; scroll
       scroll-margin 4
       scroll-conservatively 1
+      
+      create-lockfiles nil
 
       mouse-yank-at-point t
       ;; saving
