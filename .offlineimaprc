@@ -1,0 +1,42 @@
+[general]
+accounts = nosefrog,sourcegraph
+maxsyncaccounts = 3
+pythonfile = ~/.offlineimap.py
+
+[Account nosefrog]
+localrepository = nosefrogLocal
+remoterepository = nosefrogRemote
+maxage = 100
+
+[Repository nosefrogLocal]
+type = Maildir
+localfolders = ~/Maildir/nosefrog
+
+[Repository nosefrogRemote]
+type = IMAP
+remotehost = imap.gmail.com
+remoteuser = nosefrog@gmail.com
+remotepasseval = get_authinfo_password("imap.gmail.com", "nosefrog@gmail.com", 993)
+ssl = yes
+maxconnections = 1
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account sourcegraph]
+localrepository = sourcegraphLocal
+remoterepository = sourcegraphRemote
+maxage = 100
+
+[Repository sourcegraphLocal]
+type = Maildir
+localfolders = ~/Maildir/sourcegraph
+
+[Repository sourcegraphRemote]
+type = IMAP
+remotehost = imap.gmail.com
+remoteuser = samer@sourcegraph.com
+remotepasseval = get_authinfo_password("imap.gmail.com", "samer@sourcegraph.com", 993)
+ssl = yes
+maxconnections = 1
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
