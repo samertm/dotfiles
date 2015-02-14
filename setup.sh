@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copies dotfiles into home dir
 
-DONTCOPY="README setup.sh .git .gitconfig .gitmodules . .."
+DONTCOPY="README setup.sh .git .gitmodules . .."
 
 for i in $(ls -a) ; do
     CAN_COPY=1
