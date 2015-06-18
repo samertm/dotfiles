@@ -7,8 +7,13 @@
 
 
 [alias]
-        st = status
-        co = checkout
-        rb = rebase
-        changes=diff --name-status -r
-        diffstat=diff --stat -r
+        st            = status
+        co            = checkout
+        rb            = rebase
+        changes       = diff --name-status -r
+        diffstat      = diff --stat -r
+        cl            = clone
+        shallow-clone = clone --depth=1
+        scl           = clone --depth=1
+        subt          = subtree
+        subta         = subtree add
