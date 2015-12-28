@@ -1,8 +1,23 @@
-Run "./setup.sh" to copy the contents of this file into your home directory. You may have to run "chmod +x setup.sh" in order to give it executable permission.
+# dotfiles
 
-New System Setup Checklist
-==========================
+This repo contains my dotfiles.
 
-* set up installed packages
-* set up ccache correctly (symlinks in /usr/local/bin)
-* set 'always on top toggle' as 'wmctrl -r :ACTIVE: -b toggle,above'
+# Install
+
+You must have GNU Stow to install the dotfiles.
+
+```
+$ sudo apt-get install stow
+```
+
+Then run the following to install all of the dotfiles:
+
+```
+$ ./install.sh
+```
+
+Or you can stow them individually:
+
+```
+$ stow bash
+```
