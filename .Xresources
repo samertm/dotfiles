@@ -1,9 +1,0 @@
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.scrollBar: false
-URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: true
-URxvt.scrollTtyKeypress: true
-URxvt.font: xft:Ubuntu Mono
-URxvt.perl-ext:
-URxvt.perl-ext-common:
