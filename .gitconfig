@@ -1,10 +1,9 @@
 [user]
 	name = Samer Masterson
 	email = samer@samertm.com
-
-[push]
-	default = simple
-
+[merge]
+	conflictstyle = diff3
+        renamelimit   = 10000
 
 [alias]
         st            = status
@@ -17,3 +16,9 @@
         scl           = clone --depth=1
         subt          = subtree
         subta         = subtree add
+
+[format]
+        pretty = format:"%C(auto,yellow)commit %H%d%C(auto,reset)\nAuthor: %an <%ae>\nDate:   %cd\n\n%w(0,4,4)%B"
+
+[log]
+        date = local
