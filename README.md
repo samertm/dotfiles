@@ -21,3 +21,9 @@ Or you can stow them individually:
 ```
 $ stow bash
 ```
+
+To unstow a set of dotfiles:
+
+```
+$ stow -D bash
+```
