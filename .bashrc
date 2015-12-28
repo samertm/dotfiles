@@ -22,9 +22,8 @@ has() {
     hash "$@" &>/dev/null
 }
 
-source_everything_in ~/.bashrc.d
-
 # Include individual bash configuration files.
+source_everything_in ~/.bashrc.d
 
 # Include host-specific .bashrc file.
 # This is done last to allow for host-specific overrides of defaults.
