@@ -1,6 +1,3 @@
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
 # From github.com/TimMoore/dotfiles
 try_to_source() {
     local file="${1}"
