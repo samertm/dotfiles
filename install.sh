@@ -8,13 +8,9 @@ IFS=$'\n\t'
 git submodule update --init
 
 # Now use 'stow' to stow all of the files in your home directory.
-IGNORE=("README.md" "install.sh")
-for f in * ; do
-    for ignored_file in ${IGNORE[@]} ; do
-        if [ $f = $ignored_file ] ; then
-            continue 2 # Continue at top-level loop.
-        fi
-    done
-    echo "Stowing $f"
-    stow --target=$HOME $f
+for filename in * ; do
+    if [[ -d $filename ]] ; then
+        echo "Stowing $filename"
+        stow --target=$HOME $filename
+    fi
 done
