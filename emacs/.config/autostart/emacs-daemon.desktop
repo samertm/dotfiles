@@ -1,0 +1,5 @@
+[Desktop Entry]
+Version=1.0
+Name=Start Emacs Daemon
+Exec=/bin/bash --login -c "systemctl --user import-environment; systemctl --user start emacs"
+Type=Application
