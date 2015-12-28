@@ -1,3 +1,0 @@
-
-;; load readline support (added by `install-readline!')
-(require readline/rep)
