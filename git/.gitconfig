@@ -24,3 +24,5 @@
         date = local
 [push]
 	default = simple
+[commit]
+	template = /home/samer/.gitmessage
