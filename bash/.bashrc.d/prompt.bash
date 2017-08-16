@@ -31,4 +31,8 @@ UPurple='\e[4;35m'      # Purple
 UCyan='\e[4;36m'        # Cyan
 UWhite='\e[4;37m'       # White
 
-PS1="\[${BPurple}\]\w \$\[${Color_Off}\] "
+if [[ "$HOSTNAME" = "samer-dbx" ]] ; then
+    PS1="\[${BRed}\]\w \$\[${Color_Off}\] "
+else
+    PS1="\[${BPurple}\]\w \$\[${Color_Off}\] "
+fi
