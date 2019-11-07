@@ -6,6 +6,7 @@
         renamelimit   = 10000
 
 [alias]
+        s             = status
         st            = status
         co            = checkout
         rb            = rebase
@@ -16,6 +17,9 @@
         scl           = clone --depth=1
         subt          = subtree
         subta         = subtree add
+        a             = commit --amend --no-edit -a
+        rh            = reset --hard HEAD
+        pm            = push -f mac
 
 [format]
         pretty = format:"%C(auto,yellow)commit %H%d%C(auto,reset)\nAuthor: %an <%ae>\nDate:   %cd\n\n%w(0,4,4)%B"
