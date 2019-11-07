@@ -23,5 +23,5 @@ if [ -d $HOME/Android ]; then
     export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 fi
 if [ -d $HOME/.cargo/bin ]; then
-    export $PATH=$HOME/.cargo/bin:$PATH
+    export PATH=$HOME/.cargo/bin:$PATH
 fi
